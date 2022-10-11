@@ -1,15 +1,15 @@
 #include <iostream>
 
-#include "Graph.cpp"
-#include "src/AdjList.cpp"
+#include "include/UndirectedGraph.h"
 
 int main() {
-    AdjList<int> g;
-    g.add();
-    g.add();
+    UndirectedGraph g;
 
+    g.add();
+    g.add();
     g.addNeighbor(0, 1);
 
+    std::cout << g << std::endl;
 
     return 0;
 }

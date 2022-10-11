@@ -7,8 +7,23 @@
 #include <algorithm>
 
 
-template <typename T>
-void AdjList<T>::add() {
+std::ostream& operator<<(std::ostream& out, const Graph& graph) {
+    std::for_each(graph.vertices.begin(), graph.vertices.end(), [&out](auto vert) {
+        out << vert->index << " ---> ";
+        std::for_each(vert->neighbors.begin(), vert->neighbors.end(), [&out](auto neighbor) {
+            out << neighbor->index << " ";
+        });
+
+        out << std::endl;
+    });
+
+
+    return out;
+}
+
+
+
+void Graph::add() {
     auto temp = new Vertex;
     temp->index = size++;
 
@@ -17,13 +32,12 @@ void AdjList<T>::add() {
 
 
 
-template <typename T>
-AdjList<T>::AdjList() : size(0) {}
+
+Graph::Graph() : size(0) {}
 
 
 
-template <typename T>
-AdjList<T>::~AdjList() {
+Graph::~Graph() {
     std::for_each(vertices.begin(), vertices.end(), [](auto vert) {
         delete vert;
     });
@@ -39,8 +53,7 @@ AdjList<T>::~AdjList() {
  * @param n  - index with 0 based indexing
  * @param val
  */
-template <typename T>
-void AdjList<T>::addNeighbor(int n, int g) {
+void Graph::addNeighbor(int n, int g) {
     Vertex* v = vertices[n];
     v->neighbors.push_back(vertices[g]);
 }

@@ -6,16 +6,15 @@
 #define GRAPHS_ADJLIST_H
 
 #include <vector>
+#include <iostream>
 
 
 
 /**
  * Provides underlying implementation for graph
- * @tparam T
- */
-template <typename T>
-class AdjList {
-private:
+*/
+class Graph {
+protected:
     //each vertex will have its own list of neighbors
     struct Vertex {
         int index;
@@ -28,13 +27,15 @@ private:
 
 
 public:
-    AdjList();
+    Graph();
 
-    ~AdjList(); //not trivial
+    ~Graph(); //not trivial
 
     void add(); //will add a vertex
 
-    void addNeighbor(int n, int g); //ads a neighbor to n-th vertex
+    virtual void addNeighbor(int n, int g); //adds a neighbor to n-th vertex
+
+    friend std::ostream& operator<<(std::ostream& out, const Graph& graph);
 };
 
 
