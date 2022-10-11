@@ -56,4 +56,8 @@ Graph::~Graph() {
 void Graph::addNeighbor(int n, int g) {
     Vertex* v = vertices[n];
     v->neighbors.push_back(vertices[g]);
+
+    std::sort(vertices[n]->neighbors.begin(), vertices[n]->neighbors.end(), [] (Vertex* v1, Vertex* v2) {
+        return v1->index < v2->index;
+    });
 }

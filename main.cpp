@@ -5,9 +5,15 @@
 int main() {
     UndirectedGraph g;
 
-    g.add();
-    g.add();
+    for (int i = 0; i < 6; ++i) {
+        g.add();
+    }
+
     g.addNeighbor(0, 1);
+    g.addNeighbor(0, 4);
+    g.addNeighbor(3, 4);
+    g.addNeighbor(3, 2);
+    g.addNeighbor(3, 5);
 
     std::cout << g << std::endl;
 
