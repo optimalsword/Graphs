@@ -37,9 +37,12 @@ int main() {
     g.addNeighbor(6, 8);
     g.addNeighbor(6, 9);
 
+    //lonely vertex (no edges)
+    g.add();
+
     std::cout << g << std::endl;
 
-    traverse(g, 0);
+    traverse(g, 9);
 
     return 0;
 }

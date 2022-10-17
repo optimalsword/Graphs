@@ -14,15 +14,27 @@ DFSVisitor::DFSVisitor(int s) : start(s) {}
 //assume that the graph has at least one vertex
 //recursive backtracking
 void DFSVisitor::visit(const Graph &graph) {
-    for (auto & cur : graph.getVertices()) {
+    Graph::Vertex* s;
+    for (auto cur : graph.getVertices()) {
         if (cur->index == start) {
-            discovered.push_back(cur->index);
-            visitHelper(cur);
+            s = cur;
             break;
         }
     }
 
-    //cur should point to start
+    //s should point to start
+    visitHelper(s);
+    while (discovered.size() != graph.getVertices().size()) {
+        //need to get the first undiscovered vertex
+        for (auto cur : graph.getVertices()) {
+            if (!isDiscovered(cur->index)) {
+                s = cur;
+            }
+        }
+
+        visitHelper(s);
+    }
+
 }
 
 
