@@ -5,39 +5,46 @@
 #ifndef GRAPHS_ADJLIST_H
 #define GRAPHS_ADJLIST_H
 
-#include <vector>
+#include "../Visitors/TraversalVisitor.h"
 #include <iostream>
+#include <vector>
 
-
+class TraversalVisitor;
 
 /**
  * Provides underlying implementation for graph
-*/
+ */
 class Graph {
-protected:
-    //each vertex will have its own list of neighbors
+public:
+  Graph();
+
+  ~Graph(); // not trivial
+
     struct Vertex {
         int index;
         std::vector<Vertex*> neighbors;
     };
 
-    std::vector<Vertex*> vertices; //total amount of vertices
+  void add(); // will add a vertex
+
+  virtual void addNeighbor(int n, int g); // adds a neighbor to n-th vertex
+
+  friend std::ostream &operator<<(std::ostream &out, const Graph &graph);
+
+  std::vector<Vertex*> getVertices() const;
+
+  /**
+   * accepts visitors to implement traversals
+   */
+  void accept(TraversalVisitor &visitor) const;
+
+
+protected:
+    // each vertex will have its own list of neighbors
+
+    std::vector<Vertex*> vertices; // total amount of vertices
 
     int size;
-
-
-public:
-    Graph();
-
-    ~Graph(); //not trivial
-
-    void add(); //will add a vertex
-
-    virtual void addNeighbor(int n, int g); //adds a neighbor to n-th vertex
-
-    friend std::ostream& operator<<(std::ostream& out, const Graph& graph);
 };
 
-
-
-#endif //GRAPHS_ADJLIST_H
+#endif // GRAPHS_ADJLIST_H

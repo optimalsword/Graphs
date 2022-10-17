@@ -7,14 +7,11 @@
 
 #include "AdjList.h"
 
-
 class UndirectedGraph : public Graph {
 public:
-    using Graph::Graph;
+  using Graph::Graph;
 
-    void addNeighbor(int n, int g) override;
-
+  void addNeighbor(int n, int g) override;
 };
 
-
-#endif //GRAPHS_UNDIRECTEDGRAPH_H
+#endif // GRAPHS_UNDIRECTEDGRAPH_H
